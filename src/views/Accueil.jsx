@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../Components/Navbar.jsx'
 import Chat from '../Components/Chat.jsx'
 import ListeMessage from '../Components/ListeMessage.jsx'
@@ -6,19 +6,28 @@ import Profil from '../Components/Profil';
 import MyProfil from '../Components/MyProfil.jsx';
 import Search from '../Components/Search.jsx'
 import Setting from '../Components/Setting.jsx';
+import { AnimatePresence } from 'framer-motion';
 
 export default function Accueil() {
+  const [isProfilOpen, setIsProfilOpen] = useState(false);
+  const [isSearchOpen, setSearchOpen] = useState(false);
+
+  const toggleProfil = () => {
+    setIsProfilOpen(!isProfilOpen);
+  };
+
+  const toggleSearch = () => {
+    setSearchOpen(!isSearchOpen); 
+  }
+
   return (
-    // <div className='bg-radial-custom min-h-screen flex space-x-5'>
-    //   <Navbar/>
-    //   <div className='space-x-5 ml-25'>
-    //     <Chat/>
-    //   </div>
-    // </div>
     <div className='bg-radial-custom min-h-screen'>
-        <Navbar/>
+        <Navbar fonctionMyprofil={toggleProfil} fonctionSearch={toggleSearch} />
       <div className='flex'>
-        <MyProfil/>
+      <AnimatePresence>
+        {isProfilOpen && <MyProfil/>}
+      </AnimatePresence>
+        {isSearchOpen && <Search/>}
         <Chat/>
         <Profil/>
       </div>

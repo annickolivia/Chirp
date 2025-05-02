@@ -3,7 +3,7 @@ import { HiSearch  } from "react-icons/hi";
 
 export default function Search() {
   return (
-    <div className='text-black py-5 '>
+    <div className='absolute w-xl pl-35 text-black py-5 '>
       <div className='flex space-x-3'>
            <label className="relative block ">
              <span className="absolute inset-y-0 left-0 flex items-center text-gray-400 pl-2">

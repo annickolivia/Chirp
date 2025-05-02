@@ -1,10 +1,21 @@
 import React from 'react'
 import me from '../assets/me.jpg'
 import Avatar from '@mui/material/Avatar';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+
 
 export default function MyProfil() {
+
   return (
-    <div className='ml-30 absolute h-screen flex flex-col items-center p-10 py-30 space-y-5 bg-red-500'>
+
+    <motion.div 
+      className='w-xl p-20 pl-40 absolute h-screen flex flex-col items-center  space-y-5 '
+      initial={{ x: '-100%', opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: '-100%', opacity: 0 }}
+      transition={{ duration: 0.5, ease: 'easeInOut' }}
+    >
         {/* profil */}
         <div>
             <Avatar alt="Remy Sharp" src={me} sx={{ width: 150, height: 150 }} />
@@ -17,6 +28,6 @@ export default function MyProfil() {
           <button className='w-40 py-3 bg-[#7E1037] hover:bg-[#B03E67] hover:-translate-y-1 transform transition duration-300 text-white rounded-lg cursor-pointer'>Modifier le profil</button>
           <button className='w-40 bg-[#7E1037] hover:bg-[#B03E67] hover:-translate-y-1 transform transition duration-300 text-white rounded-lg cursor-pointer'>Modifier les infos</button>
         </div>
-    </div>
+    </motion.div>
   )
 }
