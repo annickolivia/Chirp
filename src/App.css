@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@layer utilities {
+    .bg-radial-custom {
+        background: #FFF2F7;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed; 
+        background-position: center;
+      }
+}
