@@ -1,13 +1,12 @@
 import React from 'react'
 import { IoMdSearch, IoIosSend } from "react-icons/io";
-import { HiOutlineDotsHorizontal  } from "react-icons/hi";
+import { HiOutlineDotsHorizontal, HiPhotograph, HiLink , HiPhone, HiVideoCamera, HiMicrophone  } from "react-icons/hi";
 import { AiOutlineLink } from "react-icons/ai";
 
 export default function Chat() {
   return (
     <div className='w-full flex justify-center'>
       <div className='h-screen bg-white flex flex-col justify-between space-y-4 pt-8 w-[40vw] '>
-
         <div className='px-8 space-y-5'>
              {/* Rechercher la conversation */}
              <div className='flex space-x-3'>
@@ -20,8 +19,12 @@ export default function Chat() {
                  <div className="dropdown dropdown-right bg-[#FFF7FA] hover:bg-gray-100 cursor-pointer rounded-sm ">
                       <HiOutlineDotsHorizontal className='text-[#7E1037]' size={'40px'} tabIndex={0} role="button" ></HiOutlineDotsHorizontal>
                       <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 ml-2 p-2 shadow-sm ">
-                        <li><a>Item 1</a></li>
-                        <li><a>Item 2</a></li>
+                        <li className='flex'> 
+                          <a><HiPhotograph size={'25px'}/>Images</a>
+                        </li>
+                        <li><a><HiLink size={'25px'}/>Liens</a></li>
+                        <li><a><HiPhone size={'25px'}/>Appel</a></li>
+                        <li><a><HiVideoCamera size={'25px'}/>Vidéo</a></li>
                       </ul>
                     </div>
                  </div>
@@ -48,8 +51,9 @@ export default function Chat() {
             <div className="dropdown dropdown-top dropdown-start p-3 bg-[#FFF7FA] hover:bg-gray-100 rounded-lg cursor-pointer">
               <AiOutlineLink className='text-[#7E1037]' size={'25px'} tabIndex={0} role="button" ></AiOutlineLink>
               <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 mb-2 p-2 shadow-sm">
-                <li><a>Item 1</a></li>
-                <li><a>Item 2</a></li>
+                <li><a><HiPhotograph size={'25px'}/>Envoyer une photo</a></li>
+                <li><a><HiLink size={'25px'}/>Envoyer un lien</a></li>
+                <li><a><HiMicrophone  size={'25px'}/>Envoyer un vocal</a></li>
               </ul>
             </div>
 

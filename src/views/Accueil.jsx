@@ -9,25 +9,31 @@ import Setting from '../Components/Setting.jsx';
 import { AnimatePresence } from 'framer-motion';
 
 export default function Accueil() {
-  const [isProfilOpen, setIsProfilOpen] = useState(false);
-  const [isSearchOpen, setSearchOpen] = useState(false);
+  const [sectionActive, setSectionActive] = useState(null);
 
-  const toggleProfil = () => {
-    setIsProfilOpen(!isProfilOpen);
+  const toggleSection = (section) => {
+    setSectionActive((prev) => (prev === section ? null : section));
   };
-
-  const toggleSearch = () => {
-    setSearchOpen(!isSearchOpen); 
-  }
 
   return (
     <div className='bg-radial-custom min-h-screen'>
-        <Navbar fonctionMyprofil={toggleProfil} fonctionSearch={toggleSearch} />
+        <Navbar onIconClick={toggleSection} sectionActive={sectionActive} />
       <div className='flex'>
+
       <AnimatePresence>
-        {isProfilOpen && <MyProfil/>}
+          {sectionActive === 'profil' && <MyProfil />}
       </AnimatePresence>
-        {isSearchOpen && <Search/>}
+
+      <AnimatePresence>
+          {sectionActive === 'search' && <Search />}
+      </AnimatePresence>
+
+      <AnimatePresence>
+          {sectionActive === 'setting' && <Setting />}
+      </AnimatePresence>
+      <AnimatePresence>
+          {sectionActive === 'liste' && <ListeMessage />}
+      </AnimatePresence>        
         <Chat/>
         <Profil/>
       </div>

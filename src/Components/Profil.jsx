@@ -1,7 +1,8 @@
 import React from 'react'
 import Avatar from '@mui/material/Avatar';
 import emie from '../assets/emie.jpg'
-import { HiChat , HiOutlineDotsHorizontal, HiVideoCamera, HiPhone   } from "react-icons/hi";
+import { HiChat , HiOutlineDotsHorizontal, HiVideoCamera, HiPhone , HiMinusCircle    } from "react-icons/hi";
+import { IoWarning } from "react-icons/io5";
 
 export default function Profil() {
   return (
@@ -33,8 +34,8 @@ export default function Profil() {
                <div className="dropdown dropdown-top p-3 bg-[#7E1037] hover:bg-[#B03E67] rounded-4xl cursor-pointer">
                   <HiOutlineDotsHorizontal className='text-white' size={'35px'} tabIndex={0} role="button" ></HiOutlineDotsHorizontal>
                   <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-40 p-2 mb-2 shadow-sm">
-                    <li><a>Item 1</a></li>
-                    <li><a>Item 2</a></li>
+                    <li><a><HiMinusCircle  size={'25px'} />Bloquer</a></li>
+                    <li><a><IoWarning size={'25px'}/>Signaler</a></li>
                   </ul>
                 </div>
                 <p>Plus</p>
