@@ -3,6 +3,9 @@ import me from '../assets/me.jpg'
 import Avatar from '@mui/material/Avatar';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Modal from './Modal';
+import ChangeProfil from './ChangeProfil';
+import Button from './Button';
 
 
 export default function MyProfil() {
@@ -25,17 +28,11 @@ export default function MyProfil() {
         <h1 className='font-bold text-3xl text-black'>Me</h1>
        </div>
         <div className='flex space-x-5'>
-          <button className='w-40 py-3 bg-[#7E1037] hover:bg-[#B03E67] hover:-translate-y-1 transform transition duration-300 text-white rounded-lg cursor-pointer'>Modifier le profil</button>
-          <button class="btn" onclick="my_modal_3.showModal()">open modal</button>
-            <dialog dialog id="my_modal_3" class="modal">
-              <div class="modal-box">
-                <form method="dialog">
-                  <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                </form>
-                <h3 class="text-lg font-bold">Hello!</h3>
-                <p class="py-4">Press ESC key or click on ✕ button to close</p>
-              </div>
-            </dialog>
+          <Button name={'Modifier le profil'}/>
+          {/* <ChangeProfil/> */}
+          {/* <button onClick={()=>document.getElementById('my_modal_3').showModal()} className='w-40 py-3 bg-[#7E1037] hover:bg-[#B03E67] hover:-translate-y-1 transform transition duration-300 text-white rounded-lg cursor-pointer'>Modifier les infos</button> */}
+           <Button name={'Modifier les infos'}/>
+           <Modal/>
         </div>
     </motion.div>
   )

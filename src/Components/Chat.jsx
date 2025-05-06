@@ -2,6 +2,8 @@ import React from 'react'
 import { IoMdSearch, IoIosSend } from "react-icons/io";
 import { HiOutlineDotsHorizontal, HiPhotograph, HiLink , HiPhone, HiVideoCamera, HiMicrophone  } from "react-icons/hi";
 import { AiOutlineLink } from "react-icons/ai";
+import Response from './Response';
+import Mymessage from './mymessqge';
 
 export default function Chat() {
   return (
@@ -31,16 +33,8 @@ export default function Chat() {
 
              {/* affichage de message */}
              <div className='flex-1 overflow-y-auto p-4 space-y-2 '>
-                <div className="chat chat-start">
-                    <div className="chat-bubble bg-[#FFE3E0] text-black">
-                        It's over Anakin,
-                        <br />
-                        I have the high ground.
-                    </div>
-                </div>
-                <div className="chat chat-end ">
-                    <div className="chat-bubble  text-black  bg-gray-100 ">You underestimate my power!</div>
-                </div>
+                <Mymessage message={'Bonjour'}/>
+                <Response reponse={'Bonjour toi'}/>
              </div>
               
         </div>

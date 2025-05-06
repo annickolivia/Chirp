@@ -35,7 +35,7 @@ export default function Accueil() {
           {sectionActive === 'liste' && <ListeMessage />}
       </AnimatePresence>        
         <Chat/>
-        <Profil/>
+        <Profil nom={'Emie'}/>
       </div>
     </div>
   )
