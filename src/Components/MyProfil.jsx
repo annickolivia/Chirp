@@ -5,7 +5,8 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Modal from './Modal';
 import ChangeProfil from './ChangeProfil';
-import Button from './Button';
+import ModalProfil from './ModalProfil';
+
 
 
 export default function MyProfil() {
@@ -28,10 +29,10 @@ export default function MyProfil() {
         <h1 className='font-bold text-3xl text-black'>Me</h1>
        </div>
         <div className='flex space-x-5'>
-          <Button name={'Modifier le profil'}/>
+        <button onClick={()=>document.getElementById('my_modal_2').showModal()} className='w-40 py-3 bg-[#7E1037] hover:bg-[#B03E67] hover:-translate-y-1 transform transition duration-300 text-white rounded-lg cursor-pointer'>Modifier le Profil</button>
+          <ModalProfil/>
           {/* <ChangeProfil/> */}
-          {/* <button onClick={()=>document.getElementById('my_modal_3').showModal()} className='w-40 py-3 bg-[#7E1037] hover:bg-[#B03E67] hover:-translate-y-1 transform transition duration-300 text-white rounded-lg cursor-pointer'>Modifier les infos</button> */}
-           <Button name={'Modifier les infos'}/>
+          <button onClick={()=>document.getElementById('my_modal_3').showModal()} className='w-40 py-3 bg-[#7E1037] hover:bg-[#B03E67] hover:-translate-y-1 transform transition duration-300 text-white rounded-lg cursor-pointer'>Modifier les infos</button>
            <Modal/>
         </div>
     </motion.div>
