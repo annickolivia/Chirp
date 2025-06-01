@@ -5,15 +5,17 @@ const UserModel = require('./models/Users')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
+const userInfo = require('./routes/UsersRoutes')
 
 const app = express()
 app.use(express.json())
 app.use(cors({
     origin: ["http://localhost:5173"],
-    methods: ["GET", "POST" ],
+    methods: ["GET", "POST", 'PUT', 'DELETE' ],
     credentials: true,
 }))
 app.use(cookieParser())
+
 
 mongoose.connect("mongodb://127.0.0.1:27017/Chirp")
 
@@ -33,6 +35,8 @@ const verifyUser = (req, res, next) => {
   });
 };
 
+app.use('/api/infos', verifyUser, userInfo)
+
 app.get("/home", verifyUser, (req, res) => {
     return res.json("Successs")
 })
@@ -44,7 +48,7 @@ app.post("/login", (req, res) => {
         if(user) {
             bcrypt.compare(password, user.password, (err, response) => {
             if(response) {
-                const token = jwt.sign({email: user.email, name: user.name}, "jwt-sercret-key", {expiresIn: "1d"})
+                const token = jwt.sign({id : user._id,email: user.email, name: user.name}, "jwt-sercret-key", {expiresIn: "1d"})
                 res.cookie("token", token);
                 res.json("Successs")
             } else {
@@ -76,6 +80,8 @@ app.post('/logout', verifyUser, (req, res) => {
   res.clearCookie('token'); // ou le nom de ton cookie
   return res.status(200).json({ message: 'Déconnecté avec succès' });
 });
+
+
 
 app.listen(4000, () => {
     console.log("mande ny seveur e")

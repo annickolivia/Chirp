@@ -4,6 +4,12 @@ const UserSchema = new mongoose.Schema({
     name: String,
     email: String,
     password: String,
+    infos : {
+        ville: String,
+        pays: String,
+        number: String,
+        bio: String
+    }
 })
 
 const UserModel = mongoose.model("users", UserSchema)
