@@ -6,6 +6,8 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 const userInfo = require('./routes/UsersRoutes')
+const multer = require("multer");
+const path = require("path");
 
 const app = express()
 app.use(express.json())
@@ -35,7 +37,20 @@ const verifyUser = (req, res, next) => {
   });
 };
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/avatars/");
+  },
+  filename: function (req, file, cb) {
+    const uniqueName = Date.now() + path.extname(file.originalname);
+    cb(null, uniqueName);
+  },
+});
+
+const upload = multer({ storage });
+
 app.use('/api/infos', verifyUser, userInfo)
+app.use('/api/avatar', verifyUser, upload.single("avatar"))
 
 app.get("/home", verifyUser, (req, res) => {
     return res.json("Successs")

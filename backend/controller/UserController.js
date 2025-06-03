@@ -1,45 +1,27 @@
 const UserModel = require('../models/Users');
 
 const getInfos = async (req, res) => {
-      try {
-    const userId = req.query.id; // Récupère l’ID depuis la query string
+  const { id } = req.query;
 
-    if (!userId) {
-      return res.status(400).json({ message: 'ID manquant dans la requête' });
+  try {
+    const user = await UserModel.findById(id).select('infos');
+
+    if (!user) {
+      return res.status(404).json({ error: 'Utilisateur non trouvé' });
     }
 
-    const user = await UserModel.findById(userId); // Recherche par ID
-
-        if (!user) {
-          return res.status(404).json({ message: 'Utilisateur non trouvé' });
-        }
-
-          res.json(user);
-        } catch (err) {
-          res.status(500).json({ message: err.message });
+    res.status(200).json({ status: 'success', infos: user.infos });
+  } catch (err) {
+    res.status(500).json({ error: 'Erreur lors de la récupération des infos' });
+    console.log(err)
   }
 };
 
-const createInfos = async (req, res) => {
-    try{
-        const infos = new UserModel(req.body);
-        await infos.save();
-        res.status(201).json(infos);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-    
-}
 
 const updateInfo = async (req, res) => {
   const { id, ville, pays, number, bio } = req.body;
   console.log(" from frontend", id, ville, pays, number, bio);
-  
-  
 
-//   if (!userId) {
-//     return res.status(400).json({ error: 'ID requis' });
-//   }
   try {
     const updateUser = await UserModel.findByIdAndUpdate(
       id,
@@ -59,9 +41,22 @@ const updateInfo = async (req, res) => {
   }
 }
 
+const updateAvatar = async(res, req) => {
+  try {
+    const user = await UserModel.findByIdAndUpdate(
+      req.user.id,
+      { avatar: `/uploads/avatars/${req.file.filename}` },
+      { new: true }
+    );
+    res.json({ success: true, avatar: user.avatar });
+  } catch (err) {
+    res.status(500).json({ error: "Erreur lors de la mise à jour de l'avatar" });
+  }
+}
+
 module.exports = {
     getInfos,
     updateInfo,
-    createInfos
+    updateAvatar,
 }
 

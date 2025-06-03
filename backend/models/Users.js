@@ -9,7 +9,8 @@ const UserSchema = new mongoose.Schema({
         pays: String,
         number: String,
         bio: String
-    }
+    },
+    avatar: String,
 })
 
 const UserModel = mongoose.model("users", UserSchema)
