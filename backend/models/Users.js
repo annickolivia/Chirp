@@ -10,7 +10,10 @@ const UserSchema = new mongoose.Schema({
         number: String,
         bio: String
     },
-    avatar: String,
+    avatar: {
+    type: String, // chemin ou nom du fichier
+    default: null
+  }
 })
 
 const UserModel = mongoose.model("users", UserSchema)
